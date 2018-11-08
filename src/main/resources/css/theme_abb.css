@@ -1,0 +1,186 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+
+.toplable{
+    -fx-text-fill: #EEF5F6;
+    -fx-font-size : 20px;
+    -fx-font-weight: bold;
+}
+.topTextField{
+    -fx-text-fill: #15383A;
+    -fx-font-size : 20px;
+    -fx-font-weight: bold;
+}
+.topbutton  {	
+    -fx-background-color: #368D93;
+    /*-fx-background-radius: 20%;*/
+    -fx-font-family:  "Helvetica";    
+    -fx-text-fill:  white;
+    -fx-font-size:  22px;
+    -fx-border-radius: 7px;
+}
+
+.SplitPaneBackground{
+    -fx-background-color: #282B36;
+}
+.actionlabel {	 
+    -fx-text-fill: #EDE8DD;
+    -fx-font-size : 20px;
+    -fx-text-alignment: center;
+    -fx-font-weight: bold;        
+}
+.actionTextField {
+    -fx-text-fill: #3B2E11;
+    -fx-font-size : 20px;
+    -fx-font-weight: bold;
+}
+.actionbutton  {	
+    -fx-background-color: #95742C;
+    -fx-font-family:  "Helvetica";    
+    -fx-text-fill:  white;
+    -fx-font-size:  20px;   
+    -fx-font-weight: bold;
+    -fx-border-radius: 20px;
+}
+.barCodeLabel {	 
+    -fx-text-fill: #EDE8DD;
+    -fx-font-size : 20px;
+    -fx-text-alignment: center;
+    -fx-font-weight: bold;        
+}
+.barCodeActionButton {	
+    -fx-background-color: #368D93;
+    -fx-font-family:  "Helvetica";    
+    -fx-text-fill:  white;
+    -fx-font-size:  18px;   
+    -fx-font-weight: bold;
+    -fx-border-radius: 20px;
+}
+.barCodeTextField {
+    -fx-text-fill: #191919;
+    -fx-font-size : 20px;
+    -fx-font-weight: bold;
+    -fx-background-color: #ffffff;
+}
+.barCodeTextArea {
+    -fx-text-fill: #191919;
+    -fx-font-size : 25px;
+    -fx-font-weight: bold;
+    -fx-background-color: #ffffff;
+}
+.barCodeSplitPaneBackground{
+    -fx-background-color: #191919;
+}
+.barCodegridPaneBackground{
+    -fx-background-color: #191919;
+}
+
+.LoginGridBackground{
+    -fx-background-color: #282B36;
+}
+.LoginLabel {	 
+    -fx-text-fill: #EDE8DD;
+    -fx-font-size : 25px;
+    -fx-text-alignment: center;
+    -fx-font-weight: bold;        
+}
+.LoginTextField {
+    -fx-text-fill: #191919;
+    -fx-font-size : 25px;
+    -fx-font-weight: bold;
+    -fx-background-color: #ffffff;
+}
+.LoginButton {
+    -fx-background-color: #368D93;
+    -fx-font-family:  "Helvetica";    
+    -fx-text-fill:  white;
+    -fx-font-size:  20px;   
+    -fx-font-weight: bold;
+    -fx-border-radius: 20px;
+}
+
+.splitpane{
+    -fx-background-color : #E1E9EA;
+     
+}
+.bottomlabel{	 
+    -fx-text-fill: #EDE8DD;
+    -fx-font-size : 20px;
+    -fx-text-alignment: center;
+    -fx-font-weight: bold;       
+}
+
+.lblSuyojan{    
+    -fx-font-size:20px;
+    -fx-font-family: "Helvetica";
+    -fx-text-alignment: center;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FE6D11;   
+    /*..*/
+    /*-fx-webkit-background-clip: text;
+    -fx-moz-background-clip: text;
+    -fx-background-clip: text;
+    -fx-color: transparent;*/   
+    -fx-effect:dropshadow( gaussian , rgba(245,171,60,0.5) ,0,0,0,1 )
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0;
+}
+
+.tab-pane
+{
+    -fx-tab-min-width:90px;
+}
+
+.tab{
+    -fx-background-insets: 0 1 0 1,0,0;
+}
+.tab-pane .tab
+{
+    -fx-background-color: #e6e6e6;
+
+}
+
+.tab-pane .tab:selected
+{
+    -fx-background-color: #CFCFCF;
+}
+
+.tab .tab-label { 
+    -fx-alignment: CENTER;
+    -fx-text-fill: #272727;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.tab:selected .tab-label { 
+    -fx-alignment: CENTER;
+    -fx-text-fill: #191919;
+}
+
+
+.table-view .column-header-background .label {
+    -fx-text-fill: #272727;
+    -fx-font-weight: bold;
+}
+
+.table-view .table-cell
+{
+    -fx-font-size: 13px;
+    //-fx-table-cell-border-color:blue;
+}
+
+.table-view .table-column{
+    -fx-alignment:center;
+}
+
+.table-row-cell{
+    -fx-border-color: #e6e6e6;
+    -fx-table-cell-border-color:#e6e6e6;
+}
