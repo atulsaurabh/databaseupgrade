@@ -1,6 +1,7 @@
 package com.technoride.server.databaseupgrade.utils;
 
 import com.technoride.server.databaseupgrade.mode.Mode;
+import com.technoride.server.databaseupgrade.mode.ModeInfo;
 
 import java.io.*;
 
@@ -53,7 +54,9 @@ public class EncodeDecodeMode
             cnf.printStackTrace();
         }
 
-        return new Mode();
+        Mode mode = new Mode();
+        mode.setWORKING_MODE(ModeInfo.SETUP.getMode());
+        return mode;
 
     }
 }

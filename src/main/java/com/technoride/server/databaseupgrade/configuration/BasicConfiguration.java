@@ -3,6 +3,7 @@ package com.technoride.server.databaseupgrade.configuration;
 
 import com.technoride.server.databaseupgrade.loader.Loader;
 import com.technoride.server.databaseupgrade.utils.EncodeDecodeMode;
+import com.technoride.server.databaseupgrade.utils.FileUtil;
 import com.technoride.server.databaseupgrade.utils.MySQLProcess;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,5 +27,11 @@ public class BasicConfiguration {
     public MySQLProcess mySQLProcess()
     {
         return new MySQLProcess();
+    }
+
+    @Bean
+    public FileUtil fileUtil()
+    {
+        return new FileUtil();
     }
 }

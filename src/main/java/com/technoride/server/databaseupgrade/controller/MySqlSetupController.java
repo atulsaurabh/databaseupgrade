@@ -1,18 +1,23 @@
 package com.technoride.server.databaseupgrade.controller;
 
+import com.technoride.server.databaseupgrade.loader.Loader;
+import com.technoride.server.databaseupgrade.loader.NodeAndController;
 import com.technoride.server.databaseupgrade.mode.Mode;
 import com.technoride.server.databaseupgrade.mode.ModeInfo;
 import com.technoride.server.databaseupgrade.utils.EncodeDecodeMode;
 import com.technoride.server.databaseupgrade.utils.MySQLProcess;
 import com.technoride.server.databaseupgrade.utils.Strings;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,6 +35,10 @@ public class MySqlSetupController {
 
     @Autowired
     private EncodeDecodeMode encodeDecodeMode;
+
+    @Autowired
+    private Loader loader;
+
     @FXML
     private TextField homepath;
 
@@ -156,6 +165,17 @@ public class MySqlSetupController {
            }
        }
 
+    }
+
+    public void openSettingDialogue(MouseEvent mouseEvent)
+    {
+        Platform.runLater(()->{
+            NodeAndController nodeAndController = loader.loadGUI("mysqlsetting.fxml");
+            Stage stage=new Stage();
+            stage.setTitle("Settings");
+            stage.setScene(new Scene(nodeAndController.getParent()));
+            stage.showAndWait();
+        });
     }
 
 

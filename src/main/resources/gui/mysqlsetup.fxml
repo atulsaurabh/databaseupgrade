@@ -65,7 +65,18 @@
                               <Button mnemonicParsing="false" onAction="#resetHomePath" prefHeight="44.0" prefWidth="116.0" styleClass="LoginButton" text="Reset" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3" />
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fitHeight="32.0" fitWidth="40.0" onMouseClicked="#openSettingDialogue" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/setting_hd.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                           </children></HBox>
                         <Label prefHeight="30.0" prefWidth="163.0" styleClass="lblSuyojan" text="User Name" GridPane.rowIndex="1" />
                         <Label prefHeight="30.0" prefWidth="160.0" styleClass="lblSuyojan" text="Password" GridPane.rowIndex="2" />
                         <TextField fx:id="mysqlUserTextField" prefHeight="54.0" prefWidth="411.0" promptText="MySql User Name" styleClass="LoginTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />

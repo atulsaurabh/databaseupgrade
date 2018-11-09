@@ -13,8 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/theme_abb.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/theme_abb.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.technoride.server.databaseupgrade.controller.SettingController">
    <children>
       <SplitPane dividerPositions="0.1558" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0">
         <items>
@@ -50,17 +49,18 @@
                       <RowConstraints maxHeight="161.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TableView prefHeight="200.0" prefWidth="200.0">
+                        <TableView fx:id="settingTable" prefHeight="200.0" prefWidth="200.0">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="Select" />
-                            <TableColumn prefWidth="131.0" text="Argument" />
-                              <TableColumn prefWidth="381.0" text="Description" />
+                            <TableColumn fx:id="serialNumber" prefWidth="75.0" text="Sr. No." />
+                            <TableColumn fx:id="parameterName" prefWidth="131.0" text="Parameters" />
+                              <TableColumn fx:id="paramValue" prefWidth="128.0" text="Value" />
+                              <TableColumn fx:id="description" prefWidth="256.0" text="Description" />
                           </columns>
                         </TableView>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="205.0" GridPane.rowIndex="1">
                            <children>
-                              <Button mnemonicParsing="false" styleClass="LoginButton" text="Apply" />
-                              <Button mnemonicParsing="false" styleClass="LoginButton" text="Cancel" />
+                              <Button mnemonicParsing="false" onAction="#applySetting" styleClass="LoginButton" text="Apply" />
+                              <Button mnemonicParsing="false" onAction="#cancelSetting" styleClass="LoginButton" text="Cancel" />
                            </children>
                         </HBox>
                      </children>

@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Mode implements Serializable {
     private String WORKING_MODE="setup";
 
+
     public String getWORKING_MODE() {
         return WORKING_MODE;
     }
