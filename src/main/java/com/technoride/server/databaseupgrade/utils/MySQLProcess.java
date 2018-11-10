@@ -17,6 +17,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class MySQLProcess
@@ -29,7 +31,7 @@ public class MySQLProcess
         try {
             Scanner scanner=new Scanner(
                     new FileInputStream(
-                            new File(getClass().getResource("/config/dvm.cfg").getPath())));
+                            new File(getClass().getResource("/config/mysql.cfg").getPath())));
             String[] str= new String[3];
             int i=0;
             while(scanner.hasNextLine()) {
@@ -69,21 +71,21 @@ private Map<String,String> getParameters()
     return parameters;
 }
 
-public boolean restore()
+public boolean restore(String fileName)
 {
-    Stage stage=new Stage();
+    /*Stage stage=new Stage();
     NodeAndController nodeAndController = loader.loadGUI("interactiveconsole.fxml");
     Scene scene = new Scene(nodeAndController.getParent());
     ConsoleController consoleController = (ConsoleController)nodeAndController.getController();
     stage.setScene(scene);
     stage.setResizable(false);
-    stage.show();
+    stage.show();*/
 
     String [] properties = getMySqlProperties();
-    long lineNumbers=0;
+    /*long lineNumbers=0;
     try {
-        lineNumbers = findFileSize("C:\\Users\\Suyojan\\Desktop\\dump_updated_final.sql");
-        consoleController.setLinenumber(lineNumbers);
+        lineNumbers = findFileSize(fileName);
+        //consoleController.setLinenumber(lineNumbers);
     }
     catch (Exception ex)
     {
@@ -96,23 +98,60 @@ public boolean restore()
     {
         e.printStackTrace();
     }
-
+*/
     String home="\""+properties[0]+"\\bin\\mysql.exe\"";
+    fileName=fileName.substring(1);
     try {
         String [] commands = new String[]{
                 home,
                 "--user="+properties[1],
                 "--password="+properties[2],
-                "--database=abblog",
                 "--verbose",
-                "--execute=source C:\\Users\\Suyojan\\Desktop\\dump_updated_final.sql"
+                "--execute=source "+fileName
         };
         Process process=Runtime.getRuntime().exec(commands);
         InputStream inputStream=process.getInputStream();
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-        consoleController.writeOutputToConsole(bufferedReader);
+        String line = "";
+        long count=0;
+        while ((line=bufferedReader.readLine()) != null)
+        {
+            System.out.print("#");
+            count++;
+            try {
+                Thread.sleep(ThreadInfo.MINIMAL_THREAD_SLEEP_TIME);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+            if (count == 100)
+            {
+                System.out.println();
+                count=0;
+            }
+        }
+
+        InputStream errorInputStream = process.getErrorStream();
+        BufferedReader errorbufferedreader = new BufferedReader(new InputStreamReader(errorInputStream));
+
+        while ((line = errorbufferedreader.readLine()) != null)
+        {
+            if(!line.startsWith("Warning"))
+                Logger.getGlobal().log(Level.SEVERE,line);
+            try {
+                Thread.sleep(ThreadInfo.MODERATE_THREAD_SLEEP_TIME);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+       // consoleController.writeOutputToConsole(bufferedReader);
        // BufferedReader errorBuffferedReader=new BufferedReader(new InputStreamReader(process.getErrorStream()));
        // consoleController.writeErrorToConsole(errorBuffferedReader);
+
+        return true;
     }
     catch (IOException io)
     {
@@ -123,7 +162,7 @@ public boolean restore()
         in.printStackTrace();
     }*/
 
-    return true;
+    return false;
 }
 
 
@@ -140,5 +179,4 @@ public boolean restore()
        Future<Long> lineNumberFinderThread = lineNumberService.submit(lineNumberCallBack);
        return lineNumberFinderThread.get();
    }
-
 }

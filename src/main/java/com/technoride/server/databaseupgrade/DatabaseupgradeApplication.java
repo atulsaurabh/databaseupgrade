@@ -1,6 +1,8 @@
 package com.technoride.server.databaseupgrade;
 
+import com.technoride.server.databaseupgrade.background.BackgoundTask;
 import com.technoride.server.databaseupgrade.dto.Parameter;
+import com.technoride.server.databaseupgrade.dto.VersionAndCurrentFile;
 import com.technoride.server.databaseupgrade.loader.Loader;
 import com.technoride.server.databaseupgrade.mode.Mode;
 import com.technoride.server.databaseupgrade.mode.ModeInfo;
@@ -59,6 +61,8 @@ public class DatabaseupgradeApplication extends Application implements Applicati
     @Autowired
     private EncodeDecodeMode encodeDecodeMode;
 
+    @Autowired
+    private BackgoundTask backgoundTask;
     private static Stage primeStage;
 
     @Override
@@ -102,6 +106,14 @@ public class DatabaseupgradeApplication extends Application implements Applicati
 
             fileUtil.saveParameter(parameterMap);
         }
+        VersionAndCurrentFile versionAndCurrentFile = fileUtil.getVesionAndCurrentFile();
+        if(versionAndCurrentFile == null)
+        {
+            versionAndCurrentFile = new VersionAndCurrentFile();
+            versionAndCurrentFile.setVersion(0);
+            versionAndCurrentFile.setCurrentFile("NOT_AVAILABLE.sql");
+            fileUtil.saveVersionAndCurrentFile(versionAndCurrentFile);
+        }
         if(args.containsOption("config"))
         {
             openPrimaryWindow();
@@ -115,12 +127,8 @@ public class DatabaseupgradeApplication extends Application implements Applicati
             }
             else
             {
-                // Run the command mode
 
-                Platform.runLater(()->{
-                    mySQLProcess.restore();
-                });
-
+                backgoundTask.runInBackground();
             }
         }
 

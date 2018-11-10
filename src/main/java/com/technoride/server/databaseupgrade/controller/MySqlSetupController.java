@@ -1,10 +1,13 @@
 package com.technoride.server.databaseupgrade.controller;
 
+import com.technoride.server.databaseupgrade.background.BackgoundTask;
+import com.technoride.server.databaseupgrade.dto.VersionAndCurrentFile;
 import com.technoride.server.databaseupgrade.loader.Loader;
 import com.technoride.server.databaseupgrade.loader.NodeAndController;
 import com.technoride.server.databaseupgrade.mode.Mode;
 import com.technoride.server.databaseupgrade.mode.ModeInfo;
 import com.technoride.server.databaseupgrade.utils.EncodeDecodeMode;
+import com.technoride.server.databaseupgrade.utils.FileUtil;
 import com.technoride.server.databaseupgrade.utils.MySQLProcess;
 import com.technoride.server.databaseupgrade.utils.Strings;
 import javafx.application.Platform;
@@ -38,6 +41,8 @@ public class MySqlSetupController {
 
     @Autowired
     private Loader loader;
+    @Autowired
+    private BackgoundTask backgoundTask;
 
     @FXML
     private TextField homepath;
@@ -51,6 +56,8 @@ public class MySqlSetupController {
 
     @Autowired
     private MySQLProcess mySQLProcess;
+    @Autowired
+    private FileUtil fileUtil;
 
     @FXML
     void browseHomePath(ActionEvent event) {
@@ -128,7 +135,7 @@ public class MySqlSetupController {
        else
        {
            try {
-               String configFile = this.getClass().getResource("/config/dvm.cfg").toURI().getPath();
+               String configFile = this.getClass().getResource("/config/mysql.cfg").toURI().getPath();
                File file=new File(configFile);
                if (!file.exists())
                    file.createNewFile();
@@ -151,8 +158,7 @@ public class MySqlSetupController {
                alert.setHeaderText("Configuration Done..");
                alert.setContentText("MySQL home is configured successfully");
                alert.show();
-
-               mySQLProcess.restore();
+               backgoundTask.runInBackground();
 
            }
            catch (IOException io)

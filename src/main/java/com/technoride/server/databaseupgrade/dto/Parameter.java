@@ -57,9 +57,9 @@ public class Parameter
     {
         System.out.println(propertyType.charAt(0));
         propertyValue.unbind();
-        propertyValue.addListener(((observable, oldValue, newValue) -> {
+        /*propertyValue.addListener(((observable, oldValue, newValue) -> {
             value=(String) newValue;
-        }));
+        }));*/
         switch (propertyType.charAt(0))
         {
             case 'T':

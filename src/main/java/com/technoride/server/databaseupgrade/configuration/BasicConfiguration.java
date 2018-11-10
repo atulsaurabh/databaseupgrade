@@ -1,6 +1,8 @@
 package com.technoride.server.databaseupgrade.configuration;
 
 
+import com.technoride.server.databaseupgrade.background.BackgoundTask;
+import com.technoride.server.databaseupgrade.client.RestClient;
 import com.technoride.server.databaseupgrade.loader.Loader;
 import com.technoride.server.databaseupgrade.utils.EncodeDecodeMode;
 import com.technoride.server.databaseupgrade.utils.FileUtil;
@@ -33,5 +35,17 @@ public class BasicConfiguration {
     public FileUtil fileUtil()
     {
         return new FileUtil();
+    }
+
+    @Bean
+    public RestClient restClient()
+    {
+        return new RestClient();
+    }
+
+    @Bean
+    public BackgoundTask backgoundTask()
+    {
+        return new BackgoundTask();
     }
 }

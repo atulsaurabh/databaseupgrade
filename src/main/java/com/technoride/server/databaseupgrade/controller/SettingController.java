@@ -1,5 +1,6 @@
 package com.technoride.server.databaseupgrade.controller;
 
+import com.technoride.server.databaseupgrade.client.RestClient;
 import com.technoride.server.databaseupgrade.dto.Parameter;
 import com.technoride.server.databaseupgrade.setting.ThreadSetting;
 import com.technoride.server.databaseupgrade.utils.FileUtil;
@@ -7,12 +8,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 
 import java.lang.reflect.Field;
@@ -24,6 +24,9 @@ public class SettingController {
 
     @Autowired
     private FileUtil fileUtil;
+
+    @Autowired
+    private RestClient restClient;
     @FXML
     private TableView<Parameter> settingTable;
 
@@ -49,7 +52,6 @@ public class SettingController {
     @FXML
     public void cancelSetting(ActionEvent event) {
 
-
     }
 
 
@@ -59,6 +61,7 @@ public class SettingController {
         parameterMap = fileUtil.populateProperty();
         parameterMap.forEach((s, parameter) -> {
             if (parameter.getPropertyType().charAt(0) == 'C')
+
             {
                 try {
                     ThreadSetting ts = new ThreadSetting(){};
